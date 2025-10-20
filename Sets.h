@@ -17,7 +17,15 @@ public:
     bool elementExists(const T& elem) const;
     void addElement(const T& elem);
     void show() const;
-    //int interseccion(int num);
+    
+    Sets<T> unionSet(const Sets<T>& other) const;
+    Sets<T> intersectionSet(const Sets<T>& other) const;
+    Sets<T> differenceSet(const Sets<T>& other) const;
+    Sets<T> symmetricDifferenceSet(const Sets<T>& other) const;
+    Sets<T> complementSet(const Sets<T>& universe) const;
+
+    const vector<T>& getElements() const { return elements; }
+    string getName() const { return name; }
 };
 
 #include "Sets.cpp"
