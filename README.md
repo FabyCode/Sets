@@ -6,8 +6,7 @@ Código realizado por:
 
 <h1>Tecnologías utilizadas en el proyecto</h1><br/>
 <h3>Para desarrollar el proyecto se emplearon las siguientes tecnologías:</h3><br/>
-
-1. <kbd>HTML (C++)</kbd>: Se utilizó para todo el programa
+1. <kbd>C++</kbd>: Se utilizó para todo el programa
 <h1>¿Cómo generar y ejecutar el .exe?</h1><br/>
 
 <h3>Existen dos formas:</h3>
