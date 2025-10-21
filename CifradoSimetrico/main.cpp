@@ -61,9 +61,14 @@ int main() {
                 sistema.mostrarReceptores();
                 sistema.mostrarLlaves();
                 break;
-            case 10: sistema.calculadoraConjuntos(); break;
-            case 0: cout << "Saliendo...\n"; break;
-            default: cout << "Opcion invalida.\n";
+            case 10:
+                sistema.calculadoraConjuntos();
+                break;
+            case 0:
+                cout << "Saliendo, ten un buen dia :3\n";
+                break;
+            default:
+                cout << "Opcion invalida.\n";
         }
     } while (opcion != 0);
 

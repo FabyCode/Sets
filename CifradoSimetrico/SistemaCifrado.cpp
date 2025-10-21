@@ -117,7 +117,7 @@ void SistemaCifrado::mostrarLlaves() const {
     cout << "}\n";
 }
 
-// PROPIEDADES DE FUNCION (punto 1.2.4)
+// PROPIEDADES DE FUNCION 
 void SistemaCifrado::verificarPropiedadesFuncion() const {
     cout << "\n--- Verificacion de Propiedades de Funcion ---\n";
     bool funcion = esFuncion();
@@ -230,10 +230,10 @@ void SistemaCifrado::calculadoraConjuntos() const {
         cout << "}\n";
     };
 
-    mostrar(uni, "Union (A ∪ B)");
-    mostrar(inter, "Interseccion (A ∩ B)");
-    mostrar(dif, "Diferencia (A - B)");
-    mostrar(difSim, "Diferencia Simetrica (A Δ B)");
+    mostrar(uni, "Union: ");
+    mostrar(inter, "Interseccion: ");
+    mostrar(dif, "Diferencia: ");
+    mostrar(difSim, "Diferencia Simetrica: ");
 }
 
 vector<string> SistemaCifrado::unionConjuntos(const vector<string>& A, const vector<string>& B) const {
