@@ -12,7 +12,15 @@ Código realizado por:
 <h3>Existen dos formas:</h3>
 <ul>
     <li>Run (F5)</li>
-    <li>AComandos</li>
+        <ul>
+            <li>Tener la extensión de C++ de Microsoft.</li>
+            <li>Correr el archivo que genera el .exe</li>
+        </ul>
+    <li>A Comandos</li>
+        <ul>
+            <li>g++ main.cpp -o set</li>
+            <li>./set</li>
+        </ul>
 </ul>
 
 <h1>Clonar el repositorio</h1><br/>
