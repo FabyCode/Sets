@@ -53,9 +53,6 @@ Sets<T> Sets<T>::intersectionSet(const Sets<T>& other) const {
     return result;
 }
 
-// --------------------------------------------------------------
-// ESTA FUNCIÓN TIENE BUGS Y NECESITA CORREGIRSE A LA BREVEDAD!!!
-// --------------------------------------------------------------
 template <typename T>
 Sets<T> Sets<T>::differenceSet(const Sets<T>& other) const {
     Sets<T> result("Diff(" + name + "," + other.name + ")");
@@ -84,4 +81,27 @@ Sets<T> Sets<T>::complementSet(const Sets<T>& universe) const {
         if (!elementExists(e))
             result.addElement(e);
     return result;
+}
+
+template <typename T>
+bool Sets<T>::isSubsetOf(const Sets<T>& other) const {
+    for (const auto& e : elements)
+        if (!other.elementExists(e))
+            return false;
+    return true;
+}
+
+template <typename T>
+bool Sets<T>::isProperSubsetOf(const Sets<T>& other) const {
+    if (!isSubsetOf(other)) return false;
+    if (elements.size() == other.getElements().size()) return false;
+    return true;
+}
+
+template <typename T>
+bool Sets<T>::isDisjointWith(const Sets<T>& other) const {
+    for (const auto& e : elements)
+        if (other.elementExists(e))
+            return false;
+    return true;
 }

@@ -24,6 +24,10 @@ public:
     Sets<T> symmetricDifferenceSet(const Sets<T>& other) const;
     Sets<T> complementSet(const Sets<T>& universe) const;
 
+    bool isSubsetOf(const Sets<T>& other) const;
+    bool isProperSubsetOf(const Sets<T>& other) const;
+    bool isDisjointWith(const Sets<T>& other) const;
+
     const vector<T>& getElements() const { return elements; }
     string getName() const { return name; }
 };

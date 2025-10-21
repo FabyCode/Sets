@@ -2,8 +2,8 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include <cstdlib>  // rand, srand
-#include <ctime>    // time
+#include <cstdlib>
+#include <ctime>
 #include "Sets.h"
 
 using namespace std;
@@ -12,7 +12,7 @@ void showSetTypeMenu();
 void showOperationMenu();
 
 int main() {
-    srand(time(nullptr)); // Inicializar semilla aleatoria
+    srand(time(nullptr));
 
     cout << "=== SET OPERATIONS PROGRAM ===\n";
     showSetTypeMenu();
@@ -125,6 +125,48 @@ int main() {
                 auto result = A.complementSet(universe);
                 result.show();
             }
+            else if (op == 6) {
+                cout << "\n=== Validations Menu ===\n";
+                cout << "1. Check if A ⊆ B\n";
+                cout << "2. Check if A ⊂ B\n";
+                cout << "3. Check if A ≠̸ B\n";
+                cout << "Select validation: ";
+                int valOp;
+                cin >> valOp;
+                cin.ignore();
+
+                cout << "Select first set (A) (1-" << n << "): ";
+                cin >> a;
+                cout << "Select second set (B) (1-" << n << "): ";
+                cin >> b;
+                cin.ignore();
+
+                if (a < 1 || b < 1 || a > n || b > n) {
+                    cout << "Invalid indices.\n";
+                    continue;
+                }
+
+                auto& A = *sets[a - 1];
+                auto& B = *sets[b - 1];
+
+                switch (valOp) {
+                    case 1:
+                        cout << A.getName() << " ⊆ " << B.getName()
+                            << "? " << (A.isSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 2:
+                        cout << A.getName() << " ⊂ " << B.getName()
+                            << "? " << (A.isProperSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 3:
+                        cout << A.getName() << " ≠̸ " << B.getName()
+                            << "? " << (A.isDisjointWith(B) ? "Yes" : "No") << endl;
+                        break;
+                    default:
+                        cout << "Invalid option.\n";
+                        break;
+                }
+            }
 
         } while (op != 0);
     }
@@ -226,6 +268,48 @@ int main() {
                 auto result = A.complementSet(universe);
                 result.show();
             }
+            else if (op == 6) {
+                cout << "\n=== Validations Menu ===\n";
+                cout << "1. Check if A ⊆ B\n";
+                cout << "2. Check if A ⊂ B\n";
+                cout << "3. Check if A ≠̸ B\n";
+                cout << "Select validation: ";
+                int valOp;
+                cin >> valOp;
+                cin.ignore();
+
+                cout << "Select first set (A) (1-" << n << "): ";
+                cin >> a;
+                cout << "Select second set (B) (1-" << n << "): ";
+                cin >> b;
+                cin.ignore();
+
+                if (a < 1 || b < 1 || a > n || b > n) {
+                    cout << "Invalid indices.\n";
+                    continue;
+                }
+
+                auto& A = *sets[a - 1];
+                auto& B = *sets[b - 1];
+
+                switch (valOp) {
+                    case 1:
+                        cout << A.getName() << " ⊆ " << B.getName()
+                            << "? " << (A.isSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 2:
+                        cout << A.getName() << " ⊂ " << B.getName()
+                            << "? " << (A.isProperSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 3:
+                        cout << A.getName() << " ≠̸ " << B.getName()
+                            << "? " << (A.isDisjointWith(B) ? "Yes" : "No") << endl;
+                        break;
+                    default:
+                        cout << "Invalid option.\n";
+                        break;
+                }
+            }
 
         } while (op != 0);
     }
@@ -313,6 +397,48 @@ int main() {
                 auto result = A.complementSet(universe);
                 result.show();
             }
+            else if (op == 6) {
+                cout << "\n=== Validations Menu ===\n";
+                cout << "1. Check if A ⊆ B\n";
+                cout << "2. Check if A ⊂ B\n";
+                cout << "3. Check if A ≠̸ B\n";
+                cout << "Select validation: ";
+                int valOp;
+                cin >> valOp;
+                cin.ignore();
+
+                cout << "Select first set (A) (1-" << n << "): ";
+                cin >> a;
+                cout << "Select second set (B) (1-" << n << "): ";
+                cin >> b;
+                cin.ignore();
+
+                if (a < 1 || b < 1 || a > n || b > n) {
+                    cout << "Invalid indices.\n";
+                    continue;
+                }
+
+                auto& A = *sets[a - 1];
+                auto& B = *sets[b - 1];
+
+                switch (valOp) {
+                    case 1:
+                        cout << A.getName() << " ⊆ " << B.getName()
+                            << "? " << (A.isSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 2:
+                        cout << A.getName() << " ⊂ " << B.getName()
+                            << "? " << (A.isProperSubsetOf(B) ? "Yes" : "No") << endl;
+                        break;
+                    case 3:
+                        cout << A.getName() << " ≠̸ " << B.getName()
+                            << "? " << (A.isDisjointWith(B) ? "Yes" : "No") << endl;
+                        break;
+                    default:
+                        cout << "Invalid option.\n";
+                        break;
+                }
+            }
 
         } while (op != 0);
     }
@@ -339,5 +465,6 @@ void showOperationMenu() {
     cout << "3. Difference\n";
     cout << "4. Symmetric Difference\n";
     cout << "5. Complement\n";
+    cout << "6. Validations\n";
     cout << "0. Exit\n";
 }
