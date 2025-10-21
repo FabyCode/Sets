@@ -1,8 +1,7 @@
 #include "SistemaCifrado.h"
 
-// -------------------------------------------------------------
-// GESTIÓN BÁSICA (ya vista en puntos anteriores)
-// -------------------------------------------------------------
+
+// GESTION DE USUARIOS (EMISOR, RECEPTOR Y LLAVES)
 void SistemaCifrado::agregarEmisor(const string& e) {
     if (find(emisores.begin(), emisores.end(), e) == emisores.end()) {
         emisores.push_back(e);
@@ -60,9 +59,8 @@ void SistemaCifrado::eliminarLlave(int llave) {
     }
 }
 
-// -------------------------------------------------------------
-// CREACIÓN DE CONEXIONES Y VERIFICACIONES
-// -------------------------------------------------------------
+
+// CONEXIONES Y VERIFICACIONES
 void SistemaCifrado::crearConexion(const string& emisor, int llave, const string& receptor) {
     if (find(emisores.begin(), emisores.end(), emisor) == emisores.end()) {
         cout << "Error: El emisor no existe.\n";
@@ -81,18 +79,15 @@ void SistemaCifrado::crearConexion(const string& emisor, int llave, const string
 
     if (find(conexiones.begin(), conexiones.end(), nuevaConexion) == conexiones.end()) {
         conexiones.push_back(nuevaConexion);
-        cout << "Conexión agregada: (" << emisor << ", " << llave << ", " << receptor << ")\n";
+        cout << "Conexion agregada: (" << emisor << ", " << llave << ", " << receptor << ")\n";
 
         verificarPropiedadesFuncion();
         verificarPropiedadesRelacion();
     } else {
-        cout << "Error: La conexión ya existe.\n";
+        cout << "Error: La conexion ya existe.\n";
     }
 }
 
-// -------------------------------------------------------------
-// MOSTRAR CONEXIONES Y CONJUNTOS
-// -------------------------------------------------------------
 void SistemaCifrado::mostrarConexiones() const {
     if (conexiones.empty()) {
         cout << "No hay conexiones registradas.\n";
@@ -122,11 +117,9 @@ void SistemaCifrado::mostrarLlaves() const {
     cout << "}\n";
 }
 
-// -------------------------------------------------------------
-// VERIFICACIÓN DE PROPIEDADES DE FUNCIÓN (punto 1.2.4)
-// -------------------------------------------------------------
+// PROPIEDADES DE FUNCION (punto 1.2.4)
 void SistemaCifrado::verificarPropiedadesFuncion() const {
-    cout << "\n--- Verificación de Propiedades de Función ---\n";
+    cout << "\n--- Verificacion de Propiedades de Funcion ---\n";
     bool funcion = esFuncion();
     bool inyectiva = false, sobreyectiva = false, biyectiva = false;
 
@@ -136,10 +129,10 @@ void SistemaCifrado::verificarPropiedadesFuncion() const {
         biyectiva = (inyectiva && sobreyectiva);
     }
 
-    cout << "Es función: " << (funcion ? "Sí" : "No") << endl;
-    cout << "Inyectiva: " << (inyectiva ? "Sí" : "No") << endl;
-    cout << "Sobreyectiva: " << (sobreyectiva ? "Sí" : "No") << endl;
-    cout << "Biyectiva: " << (biyectiva ? "Sí" : "No") << endl;
+    cout << "Es funcion: " << (funcion ? "Si" : "No") << endl;
+    cout << "Inyectiva: " << (inyectiva ? "Si" : "No") << endl;
+    cout << "Sobreyectiva: " << (sobreyectiva ? "Si" : "No") << endl;
+    cout << "Biyectiva: " << (biyectiva ? "Si" : "No") << endl;
 }
 
 bool SistemaCifrado::esFuncion() const {
@@ -173,14 +166,12 @@ bool SistemaCifrado::esSobreyectiva() const {
     return true;
 }
 
-// -------------------------------------------------------------
-// VERIFICACIÓN DE PROPIEDADES DE RELACIÓN (punto 1.2.5)
-// -------------------------------------------------------------
+// PROPIEDADES DE RELACION
 void SistemaCifrado::verificarPropiedadesRelacion() const {
-    cout << "\n--- Verificación de Propiedades de Relación ---\n";
-    cout << "Reflexiva: " << (esReflexiva() ? "Sí" : "No") << endl;
-    cout << "Simétrica: " << (esSimetrica() ? "Sí" : "No") << endl;
-    cout << "Transitiva: " << (esTransitiva() ? "Sí" : "No") << endl;
+    cout << "\n--- Verificacion de Propiedades de Relacion ---\n";
+    cout << "Reflexiva: " << (esReflexiva() ? "Si" : "No") << endl;
+    cout << "Simetrica: " << (esSimetrica() ? "Si" : "No") << endl;
+    cout << "Transitiva: " << (esTransitiva() ? "Si" : "No") << endl;
 }
 
 bool SistemaCifrado::esReflexiva() const {
@@ -223,9 +214,8 @@ bool SistemaCifrado::esTransitiva() const {
     return true;
 }
 
-// -------------------------------------------------------------
-// CALCULADORA DE CONJUNTOS (punto 1.2.6)
-// -------------------------------------------------------------
+
+// CALCULADORA DE CONJUNTOS
 void SistemaCifrado::calculadoraConjuntos() const {
     cout << "\n--- Calculadora de Conjuntos (Emisores y Receptores) ---\n";
 
@@ -240,10 +230,10 @@ void SistemaCifrado::calculadoraConjuntos() const {
         cout << "}\n";
     };
 
-    mostrar(uni, "Unión (A ∪ B)");
-    mostrar(inter, "Intersección (A ∩ B)");
+    mostrar(uni, "Union (A ∪ B)");
+    mostrar(inter, "Interseccion (A ∩ B)");
     mostrar(dif, "Diferencia (A - B)");
-    mostrar(difSim, "Diferencia Simétrica (A Δ B)");
+    mostrar(difSim, "Diferencia Simetrica (A Δ B)");
 }
 
 vector<string> SistemaCifrado::unionConjuntos(const vector<string>& A, const vector<string>& B) const {
