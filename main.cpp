@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <string>
+#include <cstdlib>  // rand, srand
+#include <ctime>    // time
 #include "Sets.h"
 
 using namespace std;
@@ -9,6 +12,8 @@ void showSetTypeMenu();
 void showOperationMenu();
 
 int main() {
+    srand(time(nullptr)); // Inicializar semilla aleatoria
+
     cout << "=== SET OPERATIONS PROGRAM ===\n";
     showSetTypeMenu();
     int typeChoice;
@@ -21,9 +26,16 @@ int main() {
     cin >> n;
     cin.ignore();
 
+    // ---------------------------------------------------------
     // TIPO ENTERO
+    // ---------------------------------------------------------
     if (typeChoice == 1) {
         vector<shared_ptr<Sets<int>>> sets;
+
+        cout << "\nDo you want to fill sets automatically?: ";
+        int autoFill;
+        cin >> autoFill;
+        cin.ignore();
 
         for (int i = 0; i < n; i++) {
             cout << "\nEnter name for set #" << i + 1 << ": ";
@@ -37,25 +49,36 @@ int main() {
             cin >> elementsCount;
             cin.ignore();
 
-            for (int j = 0; j < elementsCount; j++) {
-                int value;
-                cout << "Element " << j + 1 << ": ";
-                cin >> value;
-                cin.ignore();
-                s->addElement(value);
+            if (autoFill == 1) {
+                // Generar elementos aleatorios únicos
+                while ((int)s->getElements().size() < elementsCount) {
+                    int value = rand() % 100 + 1; // Rango 1–100
+                    s->addElement(value);
+                }
+            } else {
+                for (int j = 0; j < elementsCount; j++) {
+                    int value;
+                    cout << "Element " << j + 1 << ": ";
+                    cin >> value;
+                    cin.ignore();
+                    s->addElement(value);
+                }
             }
 
+            s->show();
             sets.push_back(s);
         }
 
+        // Crear universo (unión de todos)
         Sets<int> universe("Universe");
         for (auto& s : sets)
             universe = universe.unionSet(*s);
 
+        // --- Menú de operaciones ---
         int op;
         do {
             showOperationMenu();
-            cout << "Select operation (0 to exit): ";
+            cout << "Select operation: ";
             cin >> op;
             cin.ignore();
 
@@ -106,10 +129,17 @@ int main() {
         } while (op != 0);
     }
 
+    // ---------------------------------------------------------
     // TIPO CHAR
+    // ---------------------------------------------------------
     else if (typeChoice == 2) {
         vector<shared_ptr<Sets<char>>> sets;
-        int nElements;
+
+        cout << "\nDo you want to fill sets automatically?";
+        int autoFill;
+        cin >> autoFill;
+        cin.ignore();
+
         for (int i = 0; i < n; i++) {
             cout << "\nEnter name for set #" << i + 1 << ": ";
             string name;
@@ -117,21 +147,31 @@ int main() {
 
             auto s = make_shared<Sets<char>>(name);
 
+            int elementsCount;
             cout << "How many elements? ";
-            cin >> nElements;
+            cin >> elementsCount;
             cin.ignore();
 
-            for (int j = 0; j < nElements; j++) {
-                char c;
-                cout << "Element " << j + 1 << ": ";
-                cin >> c;
-                cin.ignore();
-                s->addElement(c);
+            if (autoFill == 1) {
+                while ((int)s->getElements().size() < elementsCount) {
+                    char value = 'A' + rand() % 26; // Letras aleatorias A-Z
+                    s->addElement(value);
+                }
+            } else {
+                for (int j = 0; j < elementsCount; j++) {
+                    char c;
+                    cout << "Element " << j + 1 << ": ";
+                    cin >> c;
+                    cin.ignore();
+                    s->addElement(c);
+                }
             }
 
+            s->show();
             sets.push_back(s);
         }
 
+        // Crear universo
         Sets<char> universe("Universe");
         for (auto& s : sets)
             universe = universe.unionSet(*s);
@@ -190,7 +230,9 @@ int main() {
         } while (op != 0);
     }
 
+    // ---------------------------------------------------------
     // TIPO STRING
+    // ---------------------------------------------------------
     else if (typeChoice == 3) {
         vector<shared_ptr<Sets<string>>> sets;
 
@@ -213,6 +255,7 @@ int main() {
                 s->addElement(value);
             }
 
+            s->show();
             sets.push_back(s);
         }
 
@@ -223,7 +266,7 @@ int main() {
         int op;
         do {
             showOperationMenu();
-            cout << "Select operation (0 to exit): ";
+            cout << "Select operation: ";
             cin >> op;
             cin.ignore();
 
@@ -275,10 +318,10 @@ int main() {
     }
 
     else {
-        cout << "Invalid type choice.\n";
+        cout << "Invalid option.\n";
     }
 
-    cout << "Exiting program...\n";
+    cout << "Exiting...\n";
     return 0;
 }
 
